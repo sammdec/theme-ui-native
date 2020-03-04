@@ -10,7 +10,7 @@ const getStyles = (props, theme) => {
   const styles = typeof props.sx === "function" ? props.sx(theme) : props.sx
   const parsedStyles = css(styles, theme)
   const raw = props.style
-  // return { ...parsedStyles, ...raw }
+  return { ...parsedStyles, ...raw }
 }
 
 const parseProps = (props, theme) => {
