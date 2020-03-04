@@ -8,6 +8,23 @@
 
 Build consistent, theme-able React Native apps based on constraint-based design principles | Built with the principles from [Theme UI](https://theme-ui.com)
 
+[![GitHub][github-badge]][github]
+[![Build Status][github-actions-badge]][github-actions]
+[![Version][version]][npm]
+![MIT License][license]
+[![system-ui/theme][system-ui-badge]](https://system-ui.com/theme)
+![][size]
+
+[github]: https://github.com/samjbmason/theme-ui-native
+[github-badge]: https://flat.badgen.net/badge/-/github?icon=github&label
+[github-actions]: https://github.com/samjbmason/theme-ui-native/actions
+[github-actions-badge]: https://github.com/samjbmason/theme-ui-native/workflows/Run%20CI/badge.svg
+[version]: https://flat.badgen.net/npm/v/theme-ui-native
+[npm]: https://npmjs.com/package/theme-ui-native
+[license]: https://flat.badgen.net/badge/license/MIT/blue
+[system-ui-badge]: https://flat.badgen.net/badge/system-ui/theme/black
+[size]: https://flat.badgen.net/bundlephobia/minzip/theme-ui-native
+
 Built for design systems, white-labels, themes, and other applications where customizing colors, typography, and layout are treated as first-class citizens and based on a standard [Theme Specification](https://system-ui.com/theme), Theme UI Native is intended to work in a variety of applications, libraries, and other UI components. Colors, typography, and layout styles derived from customizable theme-based design scales help you build UI rooted in constraint-based design principles.
 
 - [Getting started](#getting-started)
