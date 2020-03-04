@@ -14,7 +14,7 @@
   "respository": "samjbmason/theme-ui-native",
   "scripts": {
     "test": "jest",
-    "prepare": "microbundle --no-compress",
+    "prepare": "yarn run build",
     "build": "microbundle --no-compress",
     "watch": "microbundle watch"
   },
