@@ -28,6 +28,7 @@ Build consistent, theme-able React Native apps based on constraint-based design 
 Built for design systems, white-labels, themes, and other applications where customizing colors, typography, and layout are treated as first-class citizens and based on a standard [Theme Specification](https://system-ui.com/theme), Theme UI Native is intended to work in a variety of applications, libraries, and other UI components. Colors, typography, and layout styles derived from customizable theme-based design scales help you build UI rooted in constraint-based design principles.
 
 - [Getting started](#getting-started)
+- [Usage](#usage)
 - [Differences between Theme UI & Theme UI Native](#differences-between-theme-ui-and-theme-ui-native)
 - [API](#api)
 
@@ -67,7 +68,9 @@ export default {
 }
 ```
 
-## `sx` prop
+## Usage
+
+### `sx` prop
 
 The `sx` prop works similarly to Theme UI's `sx` prop, accepting style objects to add styles directly to an element in JSX, with theme-aware functionality. Using the `sx` prop for styles means that certain properties can reference values defined in your theme object. This is intended to make keeping styles consistent throughout your app the easy thing to do.
 
@@ -91,7 +94,7 @@ export default props => (
 )
 ```
 
-## `styled` function
+### `styled` function
 
 The `styled` function works similarly to Emotion's `styled` function, the first argument accepts a React component and the second argument accepts a style object that adds theme aware style properties to the `style` prop. The function returns a React component that can be used as normal within your application.
 
@@ -148,7 +151,7 @@ const Headline = styled(Text, ({ isEnabled, theme }) => ({
 export default () => <Headline isEnabled={true}>Hello</Headline>
 ```
 
-## Raw values
+### Raw values
 
 If you would like to not use a theme value and instead use a literal value, you can pass the value as a string. The raw value is converted into a number so that it is compatible with React Natives style API.
 
