@@ -6,7 +6,7 @@
 
 # Theme UI Native
 
-Build consistent, themeable React Native apps based on constraint-based design principles | Built with the principles from [Theme UI](https://theme-ui.com)
+Build consistent, theme-able React Native apps based on constraint-based design principles | Built with the principles from [Theme UI](https://theme-ui.com)
 
 Built for design systems, white-labels, themes, and other applications where customizing colors, typography, and layout are treated as first-class citizens and based on a standard Theme Specification, Theme UI Native is intended to work in a variety of applications, libraries, and other UI components. Colors, typography, and layout styles derived from customizable theme-based design scales help you build UI rooted in constraint-based design principles.
 
@@ -52,7 +52,7 @@ export default {
 
 ## `sx` prop
 
-The `sx` prop works idenitcally to Theme UI's `sx` prop, accepting style objects to add styles directly to an element in JSX, with theme-aware functionality. Using the `sx` prop for styles means that certain properties can reference values defined in your theme object. This is intended to make keeping styles consistent throughout your app the easy thing to do.
+The `sx` prop works similarly to Theme UI's `sx` prop, accepting style objects to add styles directly to an element in JSX, with theme-aware functionality. Using the `sx` prop for styles means that certain properties can reference values defined in your theme object. This is intended to make keeping styles consistent throughout your app the easy thing to do.
 
 The `sx` prop only works in modules that have defined a custom pragma at the top of the file, which replaces the default `React.createElement` function. This means you can control which modules in your application opt into this feature without the need for a Babel plugin or additional configuration.
 
@@ -76,7 +76,7 @@ export default props => (
 
 ## `styled` function
 
-The `styled` function works similarly to Emotion's `styled` function, the first argument accepts a React component and the second argument accepts a style object that adds theme aware style properties to the `style` prop. The function returns a React component that can be used as normal within your apllication.
+The `styled` function works similarly to Emotion's `styled` function, the first argument accepts a React component and the second argument accepts a style object that adds theme aware style properties to the `style` prop. The function returns a React component that can be used as normal within your application.
 
 ```jsx
 import React from "react"
@@ -178,11 +178,11 @@ export default props => (
 
 ### Responsive styles
 
-If you are coming from using Theme UI for web applications you are probably familiar with using arrays as values to change properties responsively based on breakpoints. This API isn't included Theme UI Native as there is currently no concept of responsive breakpoints within the React Natuve ecosystem.
+If you are coming from using Theme UI for web applications you are probably familiar with using arrays as values to change properties responsively based on breakpoints. This API isn't included Theme UI Native as there is currently no concept of responsive breakpoints within the React Native ecosystem.
 
 ### Body styles
 
-There is no ceoncept of the global styles within React Native and so this functionality is not available within Theme UI Native.
+There is no concept of the global styles within React Native and so this functionality is not available within Theme UI Native.
 
 ### MDX content
 
@@ -224,7 +224,7 @@ The `ThemeProvider` provides context to components that use the `sx` prop.
 
 ### `useTheme`
 
-The `useTheme` hook returns the full Theme UI Natuve context object, which includes the theme.
+The `useTheme` hook returns the full Theme UI Native context object, which includes the theme.
 
 ```js
 const theme = useTheme()
