@@ -1,4 +1,4 @@
-name: CI
+name: Run CI
 on: [push]
 
 jobs:
@@ -6,8 +6,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Cloning the repository
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+        uses: actions/checkout@v2
+      - name: Install Node
+        uses: actions/setup-node@v1
         with:
           node-version: 12
       - run: yarn install
