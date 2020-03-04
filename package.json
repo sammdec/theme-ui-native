@@ -15,6 +15,7 @@
   "scripts": {
     "test": "jest",
     "prepare": "microbundle --no-compress",
+    "build": "microbundle --no-compress",
     "watch": "microbundle watch"
   },
   "peerDependencies": {
