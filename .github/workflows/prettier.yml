@@ -1,0 +1,20 @@
+name: Format (prettier)
+
+on: [push]
+
+jobs:
+  prettier:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Cloning the repository
+      uses: actions/checkout@v1
+      with:
+      fetch-depth: 1
+    - name: Run prettier
+      uses: creyD/prettier_action@v2.0
+      with:
+        prettier_options: '--no-semi --write *.js'
+        branch: ${{ github.head_ref }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    

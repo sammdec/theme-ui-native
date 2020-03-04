@@ -15,7 +15,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-        uses: creyD/prettier_action@v2.0
       - run: yarn install
       - run: yarn build
       - run: yarn test
