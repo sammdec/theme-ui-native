@@ -1,8 +1,9 @@
-name: Node.js CI
-
+name: CI
 on: [push]
 
 jobs:
+  uses: creyD/prettier_action@v2.0
+
   build:
     runs-on: ubuntu-latest
     strategy:
@@ -14,6 +15,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+        uses: creyD/prettier_action@v2.0
       - run: yarn install
       - run: yarn build
       - run: yarn test
