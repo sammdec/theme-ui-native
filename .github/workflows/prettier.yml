@@ -6,14 +6,13 @@ jobs:
   prettier:
     runs-on: ubuntu-latest
     steps:
-    - name: Cloning the repository
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 1
-    - name: Run prettier
-      uses: creyD/prettier_action@v2.0
-      with:
-        prettier_options: '--no-semi --write *.js'
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    
+      - name: Cloning the repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - name: Run prettier
+        uses: creyD/prettier_action@v2.0
+        with:
+          prettier_options: "--no-semi --write *.js"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
