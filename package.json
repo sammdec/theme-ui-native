@@ -1,18 +1,20 @@
 {
   "name": "theme-ui-native",
   "version": "0.1.0",
+  "description": "Build consistent, themeable React Native apps based on constraint-based design principles",
   "source": "src/index.js",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
-  "author": "Sam Mason de Caires",
+  "sideEffects": false,
+  "author": "Sam Mason de Caires <sam.jbmason@gmail.com>",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
-  "sideEffects": false,
+  "respository": "samjbmason/theme-ui-native",
   "scripts": {
     "test": "jest",
-    "prepare": "microbundle",
+    "prepare": "microbundle --no-compress",
     "watch": "microbundle watch"
   },
   "peerDependencies": {
@@ -27,5 +29,13 @@
     "react": "^16.13.0",
     "react-native": "^0.61.5",
     "react-test-renderer": "^16.13.0"
-  }
+  },
+  "keywords": [
+    "theme-ui",
+    "design-system",
+    "react-native",
+    "css",
+    "styles",
+    "css-in-js"
+  ]
 }
