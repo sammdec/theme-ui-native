@@ -8,7 +8,7 @@
 
 Build consistent, theme-able React Native apps based on constraint-based design principles | Built with the principles from [Theme UI](https://theme-ui.com)
 
-Built for design systems, white-labels, themes, and other applications where customizing colors, typography, and layout are treated as first-class citizens and based on a standard Theme Specification, Theme UI Native is intended to work in a variety of applications, libraries, and other UI components. Colors, typography, and layout styles derived from customizable theme-based design scales help you build UI rooted in constraint-based design principles.
+Built for design systems, white-labels, themes, and other applications where customizing colors, typography, and layout are treated as first-class citizens and based on a standard [Theme Specification](https://system-ui.com/theme), Theme UI Native is intended to work in a variety of applications, libraries, and other UI components. Colors, typography, and layout styles derived from customizable theme-based design scales help you build UI rooted in constraint-based design principles.
 
 - [Getting started](#getting-started)
 - [Differences between Theme UI & Theme UI Native](#differences-between-theme-ui-and-theme-ui-native)
@@ -33,7 +33,7 @@ export default props => (
 )
 ```
 
-The theme object follows the System UI Theme Specification, which lets you define custom color palettes, typographic scales, fonts, and more. Read more about theming.
+The theme object follows the System UI [Theme Specification](https://system-ui.com/theme), which lets you define custom color palettes, typographic scales, fonts, and more. Read more about [theming](https://theme-ui.com/theming/).
 
 ```jsx
 // example theme.js
