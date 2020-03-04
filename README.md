@@ -10,6 +10,10 @@ Build consistent, themeable React Native apps based on constraint-based design p
 
 Built for design systems, white-labels, themes, and other applications where customizing colors, typography, and layout are treated as first-class citizens and based on a standard Theme Specification, Theme UI Native is intended to work in a variety of applications, libraries, and other UI components. Colors, typography, and layout styles derived from customizable theme-based design scales help you build UI rooted in constraint-based design principles.
 
+- [Getting started](#getting-started)
+- [Differences between Theme UI & Theme UI Native](#differences-between-theme-ui-and-theme-ui-native)
+- [API](#api)
+
 ## Getting started
 
 ```bash
@@ -48,14 +52,14 @@ export default {
 
 ## `sx` prop
 
-The `sx` prop works idenitcally to Theme-UI's `sx` prop, accepting style objects to add styles directly to an element in JSX, with theme-aware functionality. Using the `sx` prop for styles means that certain properties can reference values defined in your theme object. This is intended to make keeping styles consistent throughout your app the easy thing to do.
+The `sx` prop works idenitcally to Theme UI's `sx` prop, accepting style objects to add styles directly to an element in JSX, with theme-aware functionality. Using the `sx` prop for styles means that certain properties can reference values defined in your theme object. This is intended to make keeping styles consistent throughout your app the easy thing to do.
 
 The `sx` prop only works in modules that have defined a custom pragma at the top of the file, which replaces the default `React.createElement` function. This means you can control which modules in your application opt into this feature without the need for a Babel plugin or additional configuration.
 
 ```jsx
 /** @jsx jsx */
-import { jsx } from "theme-ui"
-import { Text } from "react-natuve"
+import { jsx } from "theme-ui-native"
+import { Text } from "react-native"
 
 export default props => (
   <Text
@@ -133,7 +137,7 @@ If you would like to not use a theme value and instead use a literal value, you 
 
 ```jsx
 /** @jsx jsx */
-import { jsx } from "theme-ui"
+import { jsx } from "theme-ui-native"
 import { Text } from "react-native"
 
 export default props => (
@@ -152,7 +156,7 @@ You can also use raw values by using the `style` prop as usual. These styles wil
 
 ```jsx
 /** @jsx jsx */
-import { jsx } from "theme-ui"
+import { jsx } from "theme-ui-native"
 import { Text } from "react-native"
 
 export default props => (
@@ -187,5 +191,59 @@ We haven't ported over MDX styling at this time as it seems unlikely to be used 
 ### Color modes
 
 We currently don't support color modes but are very open to the integrating them in future versions, feel free to raise a issue or PR if you have ideas on how to implement this.
+
+## API
+
+### `jsx`
+
+The `jsx` export is a React create element function intended for use with a custom pragma comment. It adds support for the `sx` prop, which parses style objects with the Theme UI Native `css` utility.
+
+```jsx
+/** @jsx jsx */
+import { jsx } from "theme-ui-native"
+import { Text } from "react-native"
+
+export default props => (
+  <Text
+    {...props}
+    sx={{
+      color: "primary"
+    }}
+  ></Text>
+)
+```
+
+### `ThemeProvider`
+
+The `ThemeProvider` provides context to components that use the `sx` prop.
+
+| Prop       | Type   | Description            |
+| ---------- | ------ | ---------------------- |
+| `theme`    | Object | Theming context object |
+| `children` | Node   | React children         |
+
+### `useTheme`
+
+The `useTheme` hook returns the full Theme UI Natuve context object, which includes the theme.
+
+```js
+const theme = useTheme()
+```
+
+### `styled`
+
+The `styled` function allows you to create components that can be styled using theme aware styles. The newly created components also have access to the `sx` prop, which allows for per call site theme aware style overrides.
+
+The first argument expects a react component, the second argument expects either a object containing styles or a function that returns a style object. If a function is used the props and theme are passed as the functions argument as an object.
+
+```js
+import { Text } from "react-native"
+
+const Heading = styled(Text, { color: "primary" })
+
+const Box = styled(View, ({ theme, ...props }) => ({
+  color: theme.colors.primary
+}))
+```
 
 MIT License
