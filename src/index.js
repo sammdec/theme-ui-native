@@ -11,7 +11,6 @@ const getStyles = (props, theme) => {
   const parsedStyles = css(styles, theme)
   const raw = props.style
   return { ...parsedStyles, ...raw }
-
 }
 
 const parseProps = (props, theme) => {
