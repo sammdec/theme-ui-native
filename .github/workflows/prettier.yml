@@ -9,7 +9,7 @@ jobs:
     - name: Cloning the repository
       uses: actions/checkout@v1
       with:
-      fetch-depth: 1
+        fetch-depth: 1
     - name: Run prettier
       uses: creyD/prettier_action@v2.0
       with:
