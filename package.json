@@ -1,7 +1,7 @@
 {
   "name": "theme-ui-native",
   "version": "0.1.0",
-  "description": "Build consistent, themeable React Native apps based on constraint-based design principles",
+  "description": "Build consistent, theme-able React Native apps based on constraint-based design principles",
   "source": "src/index.js",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",

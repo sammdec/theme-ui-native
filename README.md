@@ -6,7 +6,7 @@
 
 # Theme UI Native
 
-Build consistent, theme-able React Native apps based on constraint-based design principles | Built with the principles from [Theme UI](https://theme-ui.com)
+Theme UI for React Native allows you to build consistent, theme-able React Native apps based on constraint-based design principles
 
 [![GitHub][github-badge]][github]
 [![Build Status][github-actions-badge]][github-actions]
@@ -25,11 +25,11 @@ Build consistent, theme-able React Native apps based on constraint-based design 
 [system-ui-badge]: https://badgen.net/badge/system-ui/theme/black
 [size]: https://badgen.net/bundlephobia/minzip/theme-ui-native
 
-Built for design systems, white-labels, themes, and other applications where customizing colors, typography, and layout are treated as first-class citizens and based on a standard [Theme Specification](https://system-ui.com/theme), Theme UI Native is intended to work in a variety of applications, libraries, and other UI components. Colors, typography, and layout styles derived from customizable theme-based design scales help you build UI rooted in constraint-based design principles.
+Built for React Native applications where customising colours, typography, and layout are treated as first-class citizens and based on a standard [Theme Specification](https://system-ui.com/theme), Theme UI For React Native is intended to work in a variety of applications and UI components. Colors, typography, and layout styles derived from customizable theme-based design scales help you build UI rooted in constraint-based design principles.
 
 - [Getting started](#getting-started)
 - [Usage](#usage)
-- [Differences between Theme UI & Theme UI Native](#differences-between-theme-ui-and-theme-ui-native)
+- [Differences between Theme UI for Web & Theme UI for React Native](#differences-between-theme-ui-for-web-and-theme-ui-for-react-native)
 - [API](#api)
 
 ## Getting started
@@ -194,7 +194,7 @@ export default props => (
 // {color: '#000', marginX: 2}
 ```
 
-## Differences between Theme UI and Theme UI Native
+## Differences between Theme UI for Web and Theme UI for React Native
 
 ### Responsive styles
 
