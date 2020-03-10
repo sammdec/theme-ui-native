@@ -19,7 +19,7 @@
     "watch": "microbundle watch"
   },
   "peerDependencies": {
-    "react": "^16.13.0"
+    "react": "^16.8.0"
   },
   "devDependencies": {
     "@testing-library/jest-native": "^3.1.0",
