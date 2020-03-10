@@ -54,12 +54,12 @@ const theme = {
 
 describe("css", () => {
   test("returns an object", () => {
-    const result = css()
+    const result = css()()
     expect(typeof result).toBe("object")
   })
 
   test("returns styles", () => {
-    const result = css({
+    const result = css()({
       fontSize: 32,
       color: "blue",
       borderRadius: 4
@@ -72,22 +72,19 @@ describe("css", () => {
   })
 
   test("handles all core styled system props", () => {
-    const result = css(
-      {
-        m: 0,
-        mb: 2,
-        mx: "auto",
-        p: 3,
-        py: 4,
-        fontSize: 3,
-        fontWeight: "bold",
-        color: "primary",
-        bg: "secondary",
-        fontFamily: "monospace",
-        lineHeight: "body"
-      },
-      { theme }
-    )
+    const result = css({ theme })({
+      m: 0,
+      mb: 2,
+      mx: "auto",
+      p: 3,
+      py: 4,
+      fontSize: 3,
+      fontWeight: "bold",
+      color: "primary",
+      bg: "secondary",
+      fontFamily: "monospace",
+      lineHeight: "body"
+    })
     expect(result).toEqual({
       margin: 0,
       marginBottom: 8,
@@ -104,36 +101,27 @@ describe("css", () => {
   })
 
   test("works with functional arguments", () => {
-    const result = css(
-      t => ({
-        color: t.colors.primary
-      }),
-      { theme }
-    )
+    const result = css({ theme })(t => ({
+      color: t.colors.primary
+    }))
     expect(result).toEqual({
       color: "tomato"
     })
   })
 
   test("supports functional values", () => {
-    const result = css(
-      {
-        color: t => t.colors.primary
-      },
-      { theme }
-    )
+    const result = css({ theme })({
+      color: t => t.colors.primary
+    })
     expect(result).toEqual({
       color: "tomato"
     })
   })
 
   test("returns variants from theme", () => {
-    const result = css(
-      {
-        variant: "buttons.primary"
-      },
-      theme
-    )
+    const result = css(theme)({
+      variant: "buttons.primary"
+    })
     expect(result).toEqual({
       padding: 16,
       fontWeight: "600",
@@ -144,13 +132,10 @@ describe("css", () => {
   })
 
   test("handles negative margins from scale", () => {
-    const result = css(
-      {
-        mt: -3,
-        mx: -4
-      },
-      theme
-    )
+    const result = css(theme)({
+      mt: -3,
+      mx: -4
+    })
     expect(result).toEqual({
       marginTop: -16,
       marginHorizontal: -32
@@ -158,15 +143,12 @@ describe("css", () => {
   })
 
   test("handles negative top, left, bottom, and right from scale", () => {
-    const result = css(
-      {
-        top: -1,
-        right: -4,
-        bottom: -3,
-        left: -2
-      },
-      theme
-    )
+    const result = css(theme)({
+      top: -1,
+      right: -4,
+      bottom: -3,
+      left: -2
+    })
     expect(result).toEqual({
       top: -4,
       right: -32,
@@ -176,16 +158,13 @@ describe("css", () => {
   })
 
   test("multiples are transformed", () => {
-    const style = css(
-      {
-        marginX: 2,
-        marginY: 2,
-        paddingX: 2,
-        paddingY: 2,
-        size: "large"
-      },
-      theme
-    )
+    const style = css(theme)({
+      marginX: 2,
+      marginY: 2,
+      paddingX: 2,
+      paddingY: 2,
+      size: "large"
+    })
     expect(style).toEqual({
       marginHorizontal: 8,
       marginVertical: 8,
@@ -197,27 +176,24 @@ describe("css", () => {
   })
 
   test("returns individual border styles", () => {
-    const result = css(
-      {
-        borderTopWidth: "thin",
-        borderTopColor: "primary",
-        borderTopLeftRadius: "small",
-        borderTopRightRadius: "small",
-        borderTopStartRadius: "small",
-        borderTopEndRadius: "small",
-        borderBottomWidth: "thin",
-        borderBottomColor: "primary",
-        borderBottomLeftRadius: "small",
-        borderBottomRightRadius: "small",
-        borderBottomStartRadius: "small",
-        borderBottomEndRadius: "small",
-        borderRightWidth: "thin",
-        borderRightColor: "primary",
-        borderLeftWidth: "thin",
-        borderLeftColor: "primary"
-      },
-      theme
-    )
+    const result = css(theme)({
+      borderTopWidth: "thin",
+      borderTopColor: "primary",
+      borderTopLeftRadius: "small",
+      borderTopRightRadius: "small",
+      borderTopStartRadius: "small",
+      borderTopEndRadius: "small",
+      borderBottomWidth: "thin",
+      borderBottomColor: "primary",
+      borderBottomLeftRadius: "small",
+      borderBottomRightRadius: "small",
+      borderBottomStartRadius: "small",
+      borderBottomEndRadius: "small",
+      borderRightWidth: "thin",
+      borderRightColor: "primary",
+      borderLeftWidth: "thin",
+      borderLeftColor: "primary"
+    })
     expect(result).toEqual({
       borderTopColor: "tomato",
       borderTopWidth: 1,
@@ -239,32 +215,26 @@ describe("css", () => {
   })
 
   test("flexBasis uses theme.sizes", () => {
-    const style = css(
-      {
-        flexBasis: "sidebar"
-      },
-      theme
-    )
+    const style = css(theme)({
+      flexBasis: "sidebar"
+    })
     expect(style).toEqual({
       flexBasis: 320
     })
   })
 
   test("string values are passed as raw value numbers", () => {
-    const style = css(
-      {
-        fontSize: "2",
-        marginX: "auto",
-        marginY: "4",
-        margin: "4",
-        paddingX: "2",
-        paddingY: "2",
-        padding: "2",
-        borderTopWidth: "2",
-        fontWeight: "600"
-      },
-      theme
-    )
+    const style = css(theme)({
+      fontSize: "2",
+      marginX: "auto",
+      marginY: "4",
+      margin: "4",
+      paddingX: "2",
+      paddingY: "2",
+      padding: "2",
+      borderTopWidth: "2",
+      fontWeight: "600"
+    })
 
     expect(style).toEqual({
       fontSize: 2,

@@ -145,7 +145,7 @@ const transforms = [
 
 const maintainStringType = ["fontWeight"]
 
-export const css = (args = {}, props = {}) => {
+export const css = (props = {}) => (args = {}) => {
   const theme = {
     ...defaultTheme,
     ...("theme" in props ? props.theme : props)
@@ -158,13 +158,13 @@ export const css = (args = {}, props = {}) => {
     const val = typeof x === "function" ? x(theme) : x
 
     if (key === "variant") {
-      const variant = css(get(theme, val), theme)
+      const variant = css(theme)(get(theme, val))
       result = { ...result, ...variant }
       continue
     }
 
     if (val && typeof val === "object") {
-      result[key] = css(val, theme)
+      result[key] = css(theme)(val)
       continue
     }
 
