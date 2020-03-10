@@ -1,4 +1,4 @@
-import { css } from "../src/css"
+import { css, get } from "../src/css"
 
 const theme = {
   colors: {
@@ -17,7 +17,8 @@ const theme = {
   fontWeights: {
     bold: "600"
   },
-  space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
+  letterSpacings: ["-0.01em", "-0.02em", "0.01em"],
+  space: [0, 4, 8, 16, 32, 64, 128, 256, "512"],
   sizes: {
     small: 4,
     medium: 8,
@@ -142,6 +143,28 @@ describe("css", () => {
     })
   })
 
+  test("handles string negative values", () => {
+    const result = css(theme)({
+      letterSpacing: 1,
+      mx: 4
+    })
+    expect(result).toEqual({
+      letterSpacing: "-0.02em",
+      marginHorizontal: 32
+    })
+  })
+
+  test("handles negative string values from scale", () => {
+    const result = css(theme)({
+      my: -8,
+      mx: 4
+    })
+    expect(result).toEqual({
+      marginVertical: "-512",
+      marginHorizontal: 32
+    })
+  })
+
   test("handles negative top, left, bottom, and right from scale", () => {
     const result = css(theme)({
       top: -1,
@@ -247,5 +270,46 @@ describe("css", () => {
       borderTopWidth: 2,
       fontWeight: "600"
     })
+  })
+
+  test("handles style properties that are objects", () => {
+    const style = css(theme)({
+      textShadowOffset: { width: 1, height: 1 },
+      color: "primary"
+    })
+
+    expect(style).toEqual({
+      textShadowOffset: { width: 1, height: 1 },
+      color: "tomato"
+    })
+  })
+
+  test("handles non-scale values", () => {
+    const result = css(theme)({
+      textDecorationLine: "line-through",
+      mx: 2
+    })
+    expect(result).toEqual({
+      textDecorationLine: "line-through",
+      marginHorizontal: 8
+    })
+  })
+
+  test("uses raw value if value outside of scale is used", () => {
+    const result = css(theme)({
+      fontSize: 10,
+      mx: 10
+    })
+    expect(result).toEqual({
+      fontSize: 10,
+      marginHorizontal: 10
+    })
+  })
+})
+
+describe("get", () => {
+  test("fallbacks to default value if object isnt present", () => {
+    const result = get(null, 1, {})
+    expect(result).toEqual({})
   })
 })

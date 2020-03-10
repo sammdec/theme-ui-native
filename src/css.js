@@ -3,7 +3,7 @@ const defaultTheme = {
   fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 72]
 }
 
-const get = (obj, key, def, p, undef) => {
+export const get = (obj, key, def, p, undef) => {
   const path = key && typeof key === "string" ? key.split(".") : [key]
   for (p = 0; p < path.length; p++) {
     obj = obj ? obj[path[p]] : undef

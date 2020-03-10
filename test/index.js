@@ -212,6 +212,25 @@ describe("styled", () => {
     expect(getByTestId("test")).toHaveStyle({ marginHorizontal: 16 })
   })
 
+  test("adds styles when passing function to argument", () => {
+    const theme = { colors: { primary: "#07c" }, space: [0, 8, 16] }
+    const Test = styled(Text, ({ marginH }) => ({
+      marginHorizontal: marginH,
+      color: "tomato",
+      backgroundColor: "primary"
+    }))
+
+    const { getByTestId } = render(
+      <ThemeProvider theme={theme}>
+        <Test marginH={2} testID="test" />
+      </ThemeProvider>
+    )
+
+    expect(getByTestId("test")).toHaveStyle({ backgroundColor: "#07c" })
+    expect(getByTestId("test")).toHaveStyle({ color: "tomato" })
+    expect(getByTestId("test")).toHaveStyle({ marginHorizontal: 16 })
+  })
+
   test("adds styles when using sx prop", () => {
     const theme = { colors: { primary: "#07c" }, space: [0, 8, 16] }
     const Test = styled(Text)
