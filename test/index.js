@@ -2,7 +2,7 @@ import React from "react"
 import { Text } from "react-native"
 import { render } from "@testing-library/react-native"
 import { toHaveStyle, toHaveProp } from "@testing-library/jest-native"
-import { ThemeProvider, useTheme, jsx, styled } from "../src"
+import { ThemeProvider, useTheme, jsx, styled, sx } from "../src"
 
 expect.extend({ toHaveStyle, toHaveProp })
 
@@ -37,7 +37,29 @@ describe("useTheme", () => {
     )
 
     expect(context).toBeTruthy()
-    expect(context.colors.text).toBe("tomato")
+    expect(context.theme.colors.text).toBe("tomato")
+  })
+
+  test("returns sx function", () => {
+    let context
+    const GetContext = () => {
+      context = useTheme()
+      return false
+    }
+    render(
+      <ThemeProvider
+        theme={{
+          colors: {
+            text: "tomato"
+          }
+        }}
+      >
+        <GetContext />
+      </ThemeProvider>
+    )
+
+    expect(context).toBeTruthy()
+    expect(context.sx).toBeInstanceOf(Function)
   })
 })
 
@@ -235,5 +257,35 @@ describe("styled", () => {
     )
     expect(getByTestId("test")).toHaveStyle({ marginHorizontal: 30 })
     expect(getByTestId("test")).toHaveStyle({ color: "#07c" })
+  })
+})
+
+describe("sx", () => {
+  test("adds style object to component", () => {
+    const theme = { colors: { primary: "#07c" }, space: [0, 8, 16] }
+
+    const Test = () => {
+      const { sx } = useTheme()
+      return (
+        <Text
+          testID="test"
+          style={sx({
+            marginHorizontal: 2,
+            color: "tomato",
+            backgroundColor: "primary"
+          })}
+        />
+      )
+    }
+
+    const { getByTestId } = render(
+      <ThemeProvider theme={theme}>
+        <Test />
+      </ThemeProvider>
+    )
+
+    expect(getByTestId("test")).toHaveStyle({ backgroundColor: "#07c" })
+    expect(getByTestId("test")).toHaveStyle({ color: "tomato" })
+    expect(getByTestId("test")).toHaveStyle({ marginHorizontal: 16 })
   })
 })

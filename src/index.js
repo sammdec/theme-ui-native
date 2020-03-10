@@ -1,14 +1,17 @@
 import { createContext, createElement, useContext } from "react"
 import { css } from "./css"
 
-const ThemeContext = createContext()
+const ThemeContext = createContext({})
 
-export const useTheme = () => useContext(ThemeContext)
+export const useTheme = () => {
+  const ctx = useContext(ThemeContext)
+  return { ...ctx, sx: css(ctx.theme) }
+}
 
 const getStyles = (props, theme) => {
   if (!props.sx && !props.style) return undefined
   const styles = typeof props.sx === "function" ? props.sx(theme) : props.sx
-  const parsedStyles = css(styles, theme)
+  const parsedStyles = css(theme)(styles)
   const raw = props.style
   return { ...parsedStyles, ...raw }
 }
@@ -29,16 +32,16 @@ const parseProps = (props, theme) => {
 const hasStyles = obj => Object.getOwnPropertyNames(obj).length > 0
 
 export const ThemeProvider = ({ theme, children }) =>
-  createElement(ThemeContext.Provider, { value: theme }, children)
+  createElement(ThemeContext.Provider, { value: { theme } }, children)
 
 export const jsx = (type, props, ...children) => {
-  return createElement(ThemeContext.Consumer, {}, theme => {
+  return createElement(ThemeContext.Consumer, {}, ({ theme }) => {
     return createElement(type, { ...parseProps(props, theme) }, ...children)
   })
 }
 
 export const styled = (type, style) => props => {
-  const theme = useTheme()
+  const { theme } = useTheme()
   const styles =
     typeof style === "function" ? style({ ...props, theme }) : style
   const sx = { ...styles, ...props.sx }
