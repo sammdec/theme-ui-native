@@ -194,6 +194,33 @@ export default props => (
 // {color: '#000', marginX: 2}
 ```
 
+### `sx` function
+
+The `sx` function provides another option for adding theme aware style properties to your React components without the need for using the `styled` function or the `jsx` pragma.
+
+```jsx
+
+import { useTheme } from "theme-ui-native"
+import { Text } from "react-native"
+
+export default props => {
+  const { sx } = useTheme()
+
+  return (
+    <Text
+      style={sx({
+        color: 'primary' // picks up value from `theme.colors.primary`
+        marginX: 2 // picks up value from `theme.space[2]`
+      })}
+    >
+      Hello
+    </Text>
+  )
+}
+// Final output will be
+// {color: '#000', marginX: 2}
+```
+
 ## Differences between Theme UI for Web and Theme UI for React Native
 
 ### Responsive styles
@@ -242,14 +269,6 @@ The `ThemeProvider` provides context to components that use the `sx` prop.
 | `theme`    | Object | Theming context object |
 | `children` | Node   | React children         |
 
-### `useTheme`
-
-The `useTheme` hook returns the full Theme UI Native context object, which includes the theme.
-
-```js
-const theme = useTheme()
-```
-
 ### `styled`
 
 The `styled` function allows you to create components that can be styled using theme aware styles. The newly created components also have access to the `sx` prop, which allows for per call site theme aware style overrides.
@@ -264,6 +283,30 @@ const Heading = styled(Text, { color: "primary" })
 const Box = styled(View, ({ theme, ...props }) => ({
   color: theme.colors.primary
 }))
+```
+
+### `useTheme`
+
+The `useTheme` hook returns an object that contains full Theme UI Native context object, which includes the `theme` and the `sx` function.
+
+```js
+const { theme, sx } = useTheme()
+```
+
+### `sx`
+
+The `sx` function is returned from the `useTheme` hook, you can use it to style your components with theme aware styles. You should use it within the `style` prop and it will return a style object with the theme values mapped to it. This works in a similar way to how the `sx` prop from the `jsx` pragma works under the hood.
+
+```jsx
+import React from "react"
+import { View } from "react-native"
+import { useTheme } from "theme-ui-native"
+
+export default () => {
+  const { sx } = useTheme()
+
+  return <View style={sx({ mx: 2, color: "primary" })}>Hello world</View>
+}
 ```
 
 MIT License
